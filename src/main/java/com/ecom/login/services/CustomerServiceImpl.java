@@ -39,10 +39,12 @@ public class CustomerServiceImpl implements CustomerService{
                 Customer customer = optional.get();
                 return commonUtils.covertCustomerToCustomerDto(customer);
             }else{
-                throw new CustomerNotFoundException("Account isn't present for this customerid, Eneter valid customerId or Register yourself!!");
+                throw new CustomerNotFoundException("Account isn't present for this customerId, Enter valid customerId or Register yourself!!");
             }
+        }catch (CustomerNotFoundException ex){
+            throw new CustomerNotFoundException("Account isn't present for this customerId, Enter valid customerId or Register yourself!!");
         }catch (Exception ex){
-            throw new SomethingWentWrongException(ex.getMessage());
+            throw new SomethingWentWrongException("Something went wrong, Please retry or Call us on - 0110 -0596261");
         }
     }
 

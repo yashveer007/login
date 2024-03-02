@@ -2,10 +2,10 @@ package com.ecom.login.exceptionhandler;
 
 public class CustomerNotFoundException extends RuntimeException{
 
-    String exceptionMsg;
+    String message;
 
-    public CustomerNotFoundException(String ex){
-        this.exceptionMsg = ex;
+    public CustomerNotFoundException(String message){
+        this.message = message;
     }
 
 }

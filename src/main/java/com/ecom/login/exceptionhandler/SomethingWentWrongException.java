@@ -1,9 +1,9 @@
 package com.ecom.login.exceptionhandler;
 
 public class SomethingWentWrongException extends RuntimeException {
-    String msg;
+    String message;
 
-    public SomethingWentWrongException(String msg){
-        this.msg = msg;
+    public SomethingWentWrongException(String message){
+        this.message = message;
     }
 }
