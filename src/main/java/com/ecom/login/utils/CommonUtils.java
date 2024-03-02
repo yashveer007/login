@@ -16,4 +16,15 @@ public class CommonUtils {
                 .password(customerDto.getPassword())
                 .build();
     }
+
+    public CustomerDto covertCustomerToCustomerDto(Customer customer){
+        return CustomerDto.builder()
+                .firstName(customer.getFirstName())
+                .lastName(customer.getLastName())
+                .age(customer.getAge())
+                .phoneNo(customer.getPhoneNo())
+                .emailId(customer.getEmailId())
+                .password(customer.getPassword())
+                .build();
+    }
 }

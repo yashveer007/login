@@ -5,6 +5,7 @@ import com.ecom.login.dao.CustomerDao;
 import com.ecom.login.dto.CustomerDto;
 import com.ecom.login.entities.Customer;
 import com.ecom.login.exceptionhandler.CustomerNotFoundException;
+import com.ecom.login.exceptionhandler.SomethingWentWrongException;
 import com.ecom.login.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,19 +31,26 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public boolean fetchCustomerByCustomerId(int customerId) {
-        boolean isValid = false;
+    public CustomerDto fetchCustomerByCustomerId(int customerId) {
         try{
             Optional<Customer> optional = repo.findById(customerId);
             if(optional.isPresent()){
                 Customer customer = optional.get();
-
+                return commonUtils.covertCustomerToCustomerDto(customer);
             }else{
                 throw new CustomerNotFoundException("Account isn't present for this customerid, Eneter valid customerId or Register yourself!!");
             }
         }catch (Exception ex){
-
+            throw new SomethingWentWrongException(ex.getMessage());
         }
-        return isValid;
+    }
+
+    @Override
+    public CustomerDto fetchCustomerByEmailId(String emailid) {
+        try{
+            return commonUtils.covertCustomerToCustomerDto(repo.findCustomerByEmailId(emailid));
+        }catch (Exception ex){
+            throw new SomethingWentWrongException(ex.getMessage());
+        }
     }
 }
