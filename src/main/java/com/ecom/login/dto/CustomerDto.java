@@ -1,5 +1,6 @@
 package com.ecom.login.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import java.io.Serializable;
 public class CustomerDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @JsonIgnore
     private int customerId;
     private String firstName;
     private String lastName;

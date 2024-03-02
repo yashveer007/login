@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CustomerDao extends JpaRepository<Customer, Integer> {
-    Customer findCustomerByEmailId(String emailId);
+    Customer findCustomerByEmailIdAndPassword(String emailId, String password);
 }

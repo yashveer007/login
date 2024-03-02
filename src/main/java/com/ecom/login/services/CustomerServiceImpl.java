@@ -3,6 +3,7 @@ package com.ecom.login.services;
 import com.ecom.login.constants.LoginConstants;
 import com.ecom.login.dao.CustomerDao;
 import com.ecom.login.dto.CustomerDto;
+import com.ecom.login.dto.LoginDto;
 import com.ecom.login.entities.Customer;
 import com.ecom.login.exceptionhandler.CustomerNotFoundException;
 import com.ecom.login.exceptionhandler.SomethingWentWrongException;
@@ -46,9 +47,14 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public CustomerDto fetchCustomerByEmailId(String emailid) {
+    public String fetchCustomerByEmailId(LoginDto loginDto) {
         try{
-            return commonUtils.covertCustomerToCustomerDto(repo.findCustomerByEmailId(emailid));
+             Customer customer = repo.findCustomerByEmailIdAndPassword(loginDto.getEmailId(), loginDto.getPassword());
+             if(customer!=null){
+                return "Success";
+             }else{
+                 throw new CustomerNotFoundException("Account isn't present for this customerid, Eneter valid customerId or Register yourself!!");
+             }
         }catch (Exception ex){
             throw new SomethingWentWrongException(ex.getMessage());
         }

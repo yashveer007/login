@@ -44,7 +44,7 @@ public class CustomerController {
     @PostMapping("/login")
     private ResponseEntity<String> login(@RequestBody LoginDto loginDto){
         log.info("Inside login() method");
-        String token = customerService.fetchCustomerByEmailId(loginDto.getEmailId());
+        String token = customerService.fetchCustomerByEmailId(loginDto);
         return  new ResponseEntity<>(token, HttpStatus.OK);
     }
 
