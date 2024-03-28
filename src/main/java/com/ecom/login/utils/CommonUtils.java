@@ -14,6 +14,7 @@ public class CommonUtils {
                 .emailId(customerDto.getEmailId())
                 .age(customerDto.getAge())
                 .password(customerDto.getPassword())
+                .addressList(customerDto.getAddress())
                 .build();
     }
 
@@ -25,6 +26,7 @@ public class CommonUtils {
                 .phoneNo(customer.getPhoneNo())
                 .emailId(customer.getEmailId())
                 .password(customer.getPassword())
+                .address(customer.getAddressList())
                 .build();
     }
 }

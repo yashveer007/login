@@ -25,11 +25,11 @@ public class CustomerController {
     * Output ~ String
     * */
     @PostMapping("/register")
-    private ResponseEntity<String> registerCustomerLogin(@Validated @RequestBody CustomerDto customerDto){
+    private ResponseEntity<CustomerDto> registerCustomerLogin(@Validated @RequestBody CustomerDto customerDto){
         log.info("Inside saveCustomerLogin() method");
-        String msg = customerService.saveCustomer(customerDto);
+        CustomerDto customerDetails = customerService.saveCustomer(customerDto);
         log.info("Successfully save Customer data in DB");
-        ResponseEntity<String> response = new ResponseEntity<>(msg, HttpStatus.OK);
+        ResponseEntity<CustomerDto> response = new ResponseEntity<>(customerDetails, HttpStatus.OK);
         return response;
     }
 

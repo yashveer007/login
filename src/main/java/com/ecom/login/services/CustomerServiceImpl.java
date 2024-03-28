@@ -1,6 +1,5 @@
 package com.ecom.login.services;
 
-import com.ecom.login.constants.LoginConstants;
 import com.ecom.login.dao.CustomerDao;
 import com.ecom.login.dto.CustomerDto;
 import com.ecom.login.dto.LoginDto;
@@ -8,12 +7,14 @@ import com.ecom.login.entities.Customer;
 import com.ecom.login.exceptionhandler.CustomerNotFoundException;
 import com.ecom.login.exceptionhandler.SomethingWentWrongException;
 import com.ecom.login.utils.CommonUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class CustomerServiceImpl implements CustomerService{
     @Autowired
     private CustomerDao repo;
@@ -22,13 +23,14 @@ public class CustomerServiceImpl implements CustomerService{
     private CommonUtils commonUtils;
 
     @Override
-    public String saveCustomer(CustomerDto customerDto) {
+    public CustomerDto saveCustomer(CustomerDto customerDto) {
         try{
-            Customer customer =repo.save(commonUtils.customerDtoToCustomer(customerDto));
+            Customer customer = repo.save(commonUtils.customerDtoToCustomer(customerDto));
+            log.info("Saved Customer: " + customer);
+            return commonUtils.covertCustomerToCustomerDto(customer);
         }catch (Exception ex){
-            // need to add exception
+            throw new CustomerNotFoundException("fjoirj");
         }
-        return LoginConstants.ACCOUNT_CREATED;
     }
 
     @Override
