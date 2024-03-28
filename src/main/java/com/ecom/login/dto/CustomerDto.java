@@ -1,10 +1,8 @@
 package com.ecom.login.dto;
 
 import com.ecom.login.entities.Address;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import jdk.dynalink.linker.LinkerServices;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
